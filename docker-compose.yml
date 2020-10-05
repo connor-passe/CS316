@@ -8,5 +8,23 @@ services:
     ports:
       - 5000:5000
     container_name: recipes
+    volumes:
+      - .:/app
     environment:
       FLASK_APP: /app/app.py
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: development
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
