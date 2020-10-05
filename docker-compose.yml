@@ -1,0 +1,12 @@
+version: '3.2'
+services:
+  app:
+    build: .
+    command: flask run --host=0.0.0.0
+    tty: true
+    stdin_open: true
+    ports:
+      - 5000:5000
+    container_name: recipes
+    environment:
+      FLASK_APP: /app/app.py
