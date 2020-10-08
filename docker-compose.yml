@@ -24,8 +24,11 @@ services:
     volumes:
       - ./dbdata:/var/lib/postgresql/data
 
-  adminer:
-    image: adminer
+  pgadmin:
+    image: dpage/pgadmin4
     restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user
+      PGADMIN_DEFAULT_PASSWORD: example
     ports:
-      - 8080:8080
+      - 80:80
