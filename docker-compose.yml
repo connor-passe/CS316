@@ -6,7 +6,7 @@ services:
     tty: true
     stdin_open: true
     ports:
-      - 5000:5000
+      - "5000:5000"
     container_name: recipes
     volumes:
       - .:/app
@@ -23,12 +23,16 @@ services:
       POSTGRES_DB: development
     volumes:
       - ./dbdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
   pgadmin:
     image: dpage/pgadmin4
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: user
-      PGADMIN_DEFAULT_PASSWORD: example
+      PGADMIN_DEFAULT_EMAIL: sq22@duke.edu
+      PGADMIN_DEFAULT_PASSWORD: test
+    volumes:
+      - ./pgadmin-data:/var/lib/pgadmin
     ports:
-      - 80:80
+      - "8080:80"
