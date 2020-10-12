@@ -1,4 +1,4 @@
-CREATE TABLE public."Ingredients"
+CREATE TABLE public.recipes
 (
     name text COLLATE pg_catalog."default",
     id integer NOT NULL,
@@ -12,11 +12,10 @@ CREATE TABLE public."Ingredients"
 
 TABLESPACE pg_default;
 
-ALTER TABLE public."Ingredients"
+ALTER TABLE public.recipes
     OWNER to "user";
 
-COPY ingredients(name, id, minutes, n_steps, steps, description, ingredients)
-FROM 'data.csv'
+COPY public.recipes(name, id, minutes, n_steps, steps, description, ingredients)
+FROM '/var/lib/postgresql/sql/data.csv'
 DELIMITER ','
 CSV HEADER;
-

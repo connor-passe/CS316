@@ -23,6 +23,8 @@ services:
       POSTGRES_DB: development
     volumes:
       - ./dbdata:/var/lib/postgresql/data
+      - ./sql:/var/lib/postgresql/sql
+      - ./sql:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
 
