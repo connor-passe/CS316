@@ -9,7 +9,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://%s:%s@%s/%s' % (
     # ARGS.dbuser, ARGS.dbpass, ARGS.dbhost, ARGS.dbname
-    'user', 'example','db','recipes'
+    'user', 'example','db','development'
 )
 
 # initialize the database connection
@@ -20,7 +20,7 @@ db = SQLAlchemy(app)
 
 #from models import *
 
-class User(db.Model): 
+class User(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	name = db.Column(db.String(100))
 
