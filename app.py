@@ -1,8 +1,7 @@
-#import os
-
 from flask import Flask, request, render_template
 #from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -12,18 +11,25 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://%s:%s@%s/%s' % (
     'user', 'example','db','development'
 )
 
-# initialize the database connection
 db = SQLAlchemy(app)
 
-# initialize database migration management
-#MIGRATE = Migrate(APP, DB)
+migrate = Migrate(app,db)
 
-#from models import *
 
-class User(db.Model):
+class recipes(db.Model):
+	__tablename__ = 'recipes'
+
 	id = db.Column(db.Integer, primary_key = True)
 	name = db.Column(db.String(100))
+	minutes = db.Column(db.Integer)
+	n_steps = db.Column(db.Integer)
+	description = db.Column(db.String(200))
+
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+	return render_template("ID.html", query=recipes.query.all())
+
+if __name__ == '__main__':
+    app.run(debug=True)
+

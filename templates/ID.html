@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+
+<table style="margin-left: 20px;">
+<!-- Table headers -->
+    <th>
+         <tr style="color: black; ">
+
+        <th>ID</th>
+        <th>Name</th>
+        <th>Cooking_Time</th>
+        <th>Number_of_Steps</th>
+        <th>Description</th>
+
+        </tr>
+    </th>
+
+    <tr>
+    {%for recipes in query%}
+    <tr>
+    <td>
+        {{recipes.id}}
+    </td>
+    <td>
+        {{recipes.name}}
+    </td>
+    <td>
+        {{recipes.minutes}}
+    </td>
+    <td>
+        {{recipes.n_steps}}
+    </td>
+    <td>
+        {{recipes.description}}
+    </td>
+    </tr>
+    {%endfor%}
+    </tr>
+ </table>
+ </body>
+</html>
