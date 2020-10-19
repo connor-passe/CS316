@@ -2,6 +2,7 @@ from flask import Flask, request, render_template
 #from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask import request
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -37,11 +38,12 @@ class recipes(db.Model):
 def hello_world():
 	return render_template("ID.html", query=recipes.query.all())
 
-@app.route('/recipes/<id>', methods=['GET'])
-def handle_recipe(id):
-    recipe = recipes.query.get_or_404(id)
+@app.route('/recipes/', methods=['GET'])
+def handle_recipe():
 
     if request.method == 'GET':
+        id = request.args.get('id', '')
+        recipe = recipes.query.get_or_404(id)
         response = {
             "name": recipe.name,
             "minutes": recipe.minutes,
@@ -52,5 +54,3 @@ def handle_recipe(id):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
