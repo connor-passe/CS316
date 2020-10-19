@@ -25,12 +25,14 @@ class recipes(db.Model):
 	minutes = db.Column(db.Integer)
 	n_steps = db.Column(db.Integer)
 	description = db.Column(db.String(200))
+	ingredients = db.Column(db.String(200))
 
-	def __init__(self, id, name, minutes, n_steps, description):
+	def __init__(self, id, name, minutes, n_steps, description, ingredients):
 		self.id = id
 		self.name = name
 		self.n_steps = n_steps
 		self.description=description
+		self.ingredients=ingredients
 
 
 
@@ -42,15 +44,19 @@ def hello_world():
 def handle_recipe():
 
     if request.method == 'GET':
-        id = request.args.get('id', '')
-        recipe = recipes.query.get_or_404(id)
-        response = {
-            "name": recipe.name,
-            "minutes": recipe.minutes,
-            "n_steps": recipe.n_steps,
-			"description": recipe.description,
-        }
-        return {"message": "success", "recipe": response}
+        ingredient = request.args.get('ingredient', '')
+        recipe = recipes.query.filter(recipes.ingredients.contains(ingredient)).all()
+        all_recipes = []
+        for x in recipe:
+            response = {
+                "name": x.name,
+                "minutes": x.minutes,
+                "n_steps": x.n_steps,
+    			"description": x.description,
+                "ingredients": x.ingredients
+            }
+            all_recipes.append(response)
+        return {"message": "success", "recipe": all_recipes}
 
 if __name__ == '__main__':
     app.run(debug=True)
