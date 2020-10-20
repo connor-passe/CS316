@@ -24,16 +24,34 @@ class recipes(db.Model):
 	name = db.Column(db.String(100))
 	minutes = db.Column(db.Integer)
 	n_steps = db.Column(db.Integer)
+    steps = db.Column(db.String(10000))
 	description = db.Column(db.String(200))
 	ingredients = db.Column(db.String(200))
 
-	def __init__(self, id, name, minutes, n_steps, description, ingredients):
+	def __init__(self, id, name, minutes, n_steps, steps, description, ingredients):
 		self.id = id
 		self.name = name
+        self.minutes = minutes
 		self.n_steps = n_steps
-		self.description=description
-		self.ingredients=ingredients
+        self.steps = steps
+		self.description = description
+		self.ingredients = ingredients
 
+class accounts(db.Model):
+	__tablename__ = 'accounts'
+
+	id = db.Column(db.Integer, primary_key = True)
+	password = db.Column(db.String(15))
+	name = db.Column(db.String(30))
+    minutes = db.Column(db.Integer)
+    n_steps = db.Column(db.Integer)
+
+	def __init__(self, id, password, name, minutes, n_steps):
+		self.id = id
+		self.password = password
+		self.name = name
+        self.minutes = minutes
+		self.n_steps = n_steps
 
 
 @app.route('/')
