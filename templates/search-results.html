@@ -25,6 +25,7 @@
   <h1>All Recipes</h1>
 {% endif %}
 
+{% if query %}
 <table style="margin-left: 20px;">
 <!-- Table headers -->
     <th>
@@ -61,5 +62,8 @@
     {%endfor%}
     </tr>
  </table>
+ {% else %}
+ <p>No results found. Please check your spelling or try a different ingredient.</p>
+ {% endif %}
  </body>
 </html>
