@@ -73,7 +73,7 @@ def handle_recipe():
             }
             all_recipes.append(response)
         #return {"message": "success", "recipe": all_recipes}
-        return render_template("search-results.html", query=recipe)
+        return render_template("search-results.html", query=recipe, ingredient=ingredient)
 
 if __name__ == '__main__':
     app.run(debug=True)

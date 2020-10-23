@@ -9,22 +9,21 @@
 
   <div class="container">
     <div class="row">
-      <div class="col">
-
         <form action="/recipes/" method="GET">
-
           <div class="form-group">
             <input type="text" class="form-control" id="ingredient" name="ingredient" placeholder="Ingredient">
           </div>
-
           <button type="submit" class="btn btn-primary">Search</button>
         </form>
-
-      </div>
     </div>
   </div>
 
   {% endblock %}
+{% if ingredient %}
+  <h1>Results for "{{ingredient}}"</h1>
+{% else %}
+  <h1>All Recipes</h1>
+{% endif %}
 
 <table style="margin-left: 20px;">
 <!-- Table headers -->
