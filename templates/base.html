@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<head>
+  {% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  {% endblock %}
+</head>
 <body>
+  {% block nav %}
   <nav class="navbar">
     <a class="navbar-brand nav-item" href="/">Home</a>
 
@@ -14,6 +19,7 @@
     </div>
     {% endif %}
   </nav>
+  {% endblock %}
 
   {% block content %}
   {% endblock %}
