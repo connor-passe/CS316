@@ -12,43 +12,35 @@
 {% endif %}
 
 {% if query %}
-<table style="margin-left: 20px;">
-<!-- Table headers -->
-    <th>
-         <tr style="color: black; ">
-
-        <th>ID</th>
-        <th>Name</th>
-        <th>Cooking_Time</th>
-        <th>Number_of_Steps</th>
-        <th>Description</th>
-
-        </tr>
-    </th>
-
-    <tr>
-    {%for recipes in query%}
-    <tr>
-    <td>
-        {{recipes.id}}
-    </td>
-    <td>
-        {{recipes.name}}
-    </td>
-    <td>
-        {{recipes.minutes}}
-    </td>
-    <td>
-        {{recipes.n_steps}}
-    </td>
-    <td>
-        {{recipes.description}}
-    </td>
-    </tr>
-    {%endfor%}
-    </tr>
- </table>
- {% else %}
- <p>No results found. Please check your spelling or try a different ingredient.</p>
- {% endif %}
- {% endblock %}
+  {%for recipes in query%}
+  <div class="container">
+    <div class="recipe">
+      <div class="recipe-item">
+          {{recipes.name}}
+      </div>
+      <div class="recipe-item">
+        {% if recipes.minutes/60 >= 1 %}
+          {{"%.0f"|format(recipes.minutes/60)}}
+        {% endif %}
+        {% if recipes.minutes/60 > 2 %} hours
+        {% elif recipes.minutes/60 >= 1 %} hour
+        {% endif %}
+        {% if recipes.minutes%60 > 0 %}
+          {{recipes.minutes%60}} minutes
+        {% endif %}
+      </div>
+      <div class="recipe-item">
+          {{recipes.n_steps}} steps
+      </div>
+    </div>
+    <div>
+      <div>
+          {{recipes.description}}
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+{% else %}
+<p>No results found. Please check your spelling or try a different ingredient.</p>
+{% endif %}
+{% endblock %}
