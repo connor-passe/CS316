@@ -1,3 +1,29 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
 body {
   font-family: verdana, geneva, sans-serif;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #E8E8E8;
+}
+
+.navbar-user {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar-right {
+  align-self: right;
+}
+
+.nav-item {
+  padding: 10px;
+  color: black;
+  text-decoration: none;
 }
