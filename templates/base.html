@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+  {% block navbar %}
+  <nav class="navbar">
+    <a class="navbar-brand" href="/">Home</a>
+
+    <div class="navbar-right" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        {% if username %}
+        <li class="nav-item">
+          <a class="nav-link" href="/favorites">Welcome, {{username}}</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Log in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">Sign Up</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  {% endblock %}
+
+  {% block content %}
+  {% endblock %}
+
+ </body>
+</html>

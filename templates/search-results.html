@@ -1,13 +1,7 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-<body>
-
 {% extends "main.html" %}
 
 {% block content %}
+{{super()}}
 {% if ingredient %}
   <h1>Results for "{{ingredient}}"</h1>
 {% else %}
@@ -55,5 +49,3 @@
  <p>No results found. Please check your spelling or try a different ingredient.</p>
  {% endif %}
  {% endblock %}
- </body>
-</html>
