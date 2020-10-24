@@ -5,6 +5,7 @@
 {% endblock %}
 {% block content %}
 {{super()}}
+<div class="results-content">
 {% if ingredient %}
   <h1>Results for "{{ingredient}}"</h1>
 {% else %}
@@ -35,7 +36,7 @@
     </div>
     <div>
       <div class="text-2">
-          {{recipes.description}}
+          {{"%s"|format(recipes.description)|truncate(150)}}
       </div>
     </div>
   </div>
@@ -43,4 +44,5 @@
 {% else %}
 <p>No results found. Please check your spelling or try a different ingredient.</p>
 {% endif %}
+</div>
 {% endblock %}

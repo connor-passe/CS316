@@ -34,3 +34,14 @@ h1 {
   padding: 0px 10px 10px 10px;
   color: #B3B3B3;
 }
+
+.results-content {
+  margin: 10px;
+}
+
+@media (min-width: 768px) {
+  .results-content {
+    width: 60%;
+    margin: auto;
+  }
+}
