@@ -15,7 +15,6 @@ db = SQLAlchemy(app)
 
 migrate = Migrate(app,db)
 
-
 class recipes(db.Model):
     __tablename__ = 'recipes'
 

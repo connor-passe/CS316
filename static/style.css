@@ -10,7 +10,7 @@ body {
 nav {
   display: flex;
   justify-content: space-between;
-  background-color: #E8E8E8;
+  background-color: #E6E6E6;
 }
 
 .navbar-user {

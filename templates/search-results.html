@@ -16,7 +16,7 @@
   <div class="container">
     <div class="recipe">
       <div class="recipe-item">
-          {{recipes.name}}
+          {{recipes.name.title()}}
       </div>
       <div class="recipe-item">
         {% if recipes.minutes/60 >= 1 %}
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div>
-      <div>
+      <div class="text-2">
           {{recipes.description}}
       </div>
     </div>
