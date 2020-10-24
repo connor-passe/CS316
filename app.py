@@ -64,6 +64,7 @@ def handle_recipe():
         all_recipes = []
         for x in recipe:
             response = {
+                "id": x.id,
                 "name": x.name,
                 "minutes": x.minutes,
                 "n_steps": x.n_steps,
@@ -73,6 +74,11 @@ def handle_recipe():
             all_recipes.append(response)
         #return {"message": "success", "recipe": all_recipes}
         return render_template("search-results.html", query=recipe, ingredient=ingredient)
+
+@app.route('/recipe/<id>', methods=['GET'])
+def one_recipe(id):
+    return {"message": "success", "recipe": id}
+    #goal to show all the info for one recipe
 
 if __name__ == '__main__':
     app.run(debug=True)
