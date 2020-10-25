@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for, flash
+#from flask_login import LoginManager, login_user, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask import request
@@ -39,17 +40,25 @@ class accounts(db.Model):
     __tablename__ = 'accounts'
 
     id = db.Column(db.Integer, primary_key = True)
-    password = db.Column(db.String(15))
-    name = db.Column(db.String(30))
-    minutes = db.Column(db.Integer)
-    n_steps = db.Column(db.Integer)
+    username = db.Column(db.String(25), unique=True, nullable=False)
+    password = db.Column(db.String(), nullable=False)
+    name = db.Column(db.String())
+    age = db.Column(db.Integer)
+    cooking_skill = db.Column(db.String())
+    vegetarian = db.Column(db.Boolean())
+    security_answer = db.Column(db.String(), nullable=False)
 
-    def __init__(self, id, password, name, minutes, n_steps):
+
+
+    def __init__(self, id, username, password, name, age, cooking_skill,vegetarian,security_answer):
         self.id = id
+        self.username = username
         self.password = password
         self.name = name
-        self.minutes = minutes
-        self.n_steps = n_steps
+        self.age = age
+        self.cooking_skill = cooking_skill
+        self.vegetarian = vegetarian
+        self.security_answer = security_answer
 
 @app.template_filter('parseList')
 def parse_list_filter(s):
