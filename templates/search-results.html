@@ -1,6 +1,6 @@
-{% extends "main.html" %}
+{% extends "base.html" %}
 {% block head %}
-{{super.super()}}
+{{super()}}
 <link rel="stylesheet" href="{{ url_for('static', filename='style-search.css') }}">
 {% endblock %}
 {% block content %}
@@ -14,7 +14,7 @@
 
 {% if query %}
   {%for recipes in query%}
-  <div class="container">
+  <a href={{recipes.id}} class="container">
     <div class="recipe">
       <div class="recipe-item">
           {{recipes.name.title()}}
@@ -39,7 +39,7 @@
           {{"%s"|format(recipes.description)|truncate(150)}}
       </div>
     </div>
-  </div>
+  </a>
   {%endfor%}
 {% else %}
 <p>No results found. Please check your spelling or try a different ingredient.</p>

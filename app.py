@@ -51,6 +51,17 @@ class accounts(db.Model):
         self.minutes = minutes
         self.n_steps = n_steps
 
+@app.template_filter('parseList')
+def parse_list_filter(s):
+    s = s.replace('"', "'")
+    splitString = s.split("', '")
+    toRemove = ["[", "]", "'"]
+    returnList = []
+    for x in splitString:
+        for i in toRemove:
+            x = x.replace(i, '')
+        returnList.append(x)
+    return returnList
 
 @app.route('/')
 def hello_world():
@@ -75,9 +86,9 @@ def handle_recipe():
         #return {"message": "success", "recipe": all_recipes}
         return render_template("search-results.html", query=recipe, ingredient=ingredient)
 
-@app.route('/recipe/<id>', methods=['GET'])
+@app.route('/recipes/<id>', methods=['GET'])
 def one_recipe(id):
-    return {"message": "success", "recipe": id}
+    return render_template("one-recipe.html", query=recipes.query.get(id))
     #goal to show all the info for one recipe
 
 if __name__ == '__main__':

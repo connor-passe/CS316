@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block head %}
+{{super()}}
+  <link rel="stylesheet" href="{{ url_for('static', filename='style-recipe.css') }}">
+{% endblock %}
+  {% block content %}
+  {{super()}}
+  {% if query %}
+  <h1> {{query.name.title()}} </h1>
+      <div class="info">
+        <div class="info-item">
+          {% if query.minutes/60 >= 1 %}
+            {{"%.0f"|format(query.minutes/60)}}
+          {% endif %}
+          {% if query.minutes/60 > 2 %} hours
+          {% elif query.minutes/60 >= 1 %} hour
+          {% endif %}
+          {% if query.minutes%60 > 0 %}
+            {{query.minutes%60}} minutes
+          {% endif %}
+        </div>
+        <div class="info-item">
+            {{query.n_steps}} steps
+        </div>
+      </div>
+      <div class="description">
+          {{"%s"|format(query.description)}}
+      </div>
+      <div class="ingredients">
+        {% for s in "%s"|format(query.ingredients)|parseList %}
+        <div class="ingredient">
+        {{s}}
+        </div>
+        {% endfor %}
+      </div>
+      <div class="instructions">
+        {% for s in "%s"|format(query.steps)|parseList %}
+        <div class="ingredient">
+        {{loop.index}}. {{s}}
+        </div>
+        {% endfor %}
+      </div>
+  {% else %}
+  <p>No results found. Please check your spelling or try a different ingredient.</p>
+  {% endif %}
+  {% endblock %}
