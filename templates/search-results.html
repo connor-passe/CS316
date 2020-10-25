@@ -23,7 +23,7 @@
         {% if recipes.minutes/60 >= 1 %}
           {{"%.0f"|format(recipes.minutes/60)}}
         {% endif %}
-        {% if recipes.minutes/60 > 2 %} hours
+        {% if recipes.minutes/60 >= 2 %} hours
         {% elif recipes.minutes/60 >= 1 %} hour
         {% endif %}
         {% if recipes.minutes%60 > 0 %}

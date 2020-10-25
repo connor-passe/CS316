@@ -16,3 +16,15 @@ form {
 h1 {
   margin: 10px;
 }
+
+.info {
+  display: flex;
+}
+
+.txt {
+  padding: 10px;
+}
+
+.description {
+  color: #808080;
+}

@@ -8,34 +8,34 @@
   {% if query %}
   <h1> {{query.name.title()}} </h1>
       <div class="info">
-        <div class="info-item">
+        <div class="info-item txt">
           {% if query.minutes/60 >= 1 %}
             {{"%.0f"|format(query.minutes/60)}}
           {% endif %}
-          {% if query.minutes/60 > 2 %} hours
+          {% if query.minutes/60 >= 2 %} hours
           {% elif query.minutes/60 >= 1 %} hour
           {% endif %}
           {% if query.minutes%60 > 0 %}
             {{query.minutes%60}} minutes
           {% endif %}
         </div>
-        <div class="info-item">
+        <div class="info-item txt">
             {{query.n_steps}} steps
         </div>
       </div>
-      <div class="description">
+      <div class="description txt">
           {{"%s"|format(query.description)}}
       </div>
-      <div class="ingredients">
+      <div class="ingredients txt">
         {% for s in "%s"|format(query.ingredients)|parseList %}
         <div class="ingredient">
         {{s}}
         </div>
         {% endfor %}
       </div>
-      <div class="instructions">
+      <div class="instructions txt">
         {% for s in "%s"|format(query.steps)|parseList %}
-        <div class="ingredient">
+        <div class="instruction">
         {{loop.index}}. {{s}}
         </div>
         {% endfor %}
