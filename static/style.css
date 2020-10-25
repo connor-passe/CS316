@@ -27,3 +27,18 @@ nav {
   color: black;
   text-decoration: none;
 }
+
+form {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.form-item {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.btn {
+  padding: 0px 14px;
+}
