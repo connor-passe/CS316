@@ -21,13 +21,16 @@
   </nav>
   {% endblock %}
 
-  {% block content %}
+  {% block search %}
   <form action="/recipes/" method="GET">
     <div class="form-group">
       <input type="text" class="form-control form-item" id="ingredient" name="ingredient" placeholder="Ingredient">
     </div>
     <button type="submit" class="btn btn-primary form-item">Search</button>
   </form>
+  {% endblock %}
+  
+  {% block content %}
   {% endblock %}
 
  </body>
