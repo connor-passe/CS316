@@ -1,3 +1,5 @@
 dbdata
 __pycache__
 pgadmin-data
+*.DS_Store
+.DS_Store
