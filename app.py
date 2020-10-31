@@ -100,5 +100,52 @@ def one_recipe(id):
     return render_template("one-recipe.html", query=recipes.query.get(id))
     #goal to show all the info for one recipe
 
+@app.route("/accounts/", methods=['GET', 'POST'])
+def index():
+
+    reg_form = RegistrationForm()
+
+    # Update database if validation success
+    if reg_form.validate_on_submit():
+        username = reg_form.username.data
+        password = reg_form.password.data
+
+        # Hash password
+        hashed_pswd = pbkdf2_sha256.hash(password)
+
+        # Add username & hashed password to DB
+        user = User(username=username, hashed_pswd=hashed_pswd)
+        db.session.add(user)
+        db.session.commit()
+
+        flash('Registered successfully. Please login.', 'success')
+        return redirect(url_for('login'))
+
+    return render_template("index.html", form=reg_form)
+
+
+@app.route("/login/", methods=['GET', 'POST'])
+def login():
+
+    login_form = LoginForm()
+
+    # Allow login if validation success
+    if login_form.validate_on_submit():
+        user_object = User.query.filter_by(username=login_form.username.data).first()
+        login_user(user_object)
+        return redirect(url_for('chat'))
+
+    return render_template("login.html", form=login_form)
+
+
+@app.route("/logout/", methods=['GET'])
+def logout():
+
+    # Logout user
+    logout_user()
+    flash('You have logged out successfully', 'success')
+    return redirect(url_for('login'))
+
+
 if __name__ == '__main__':
     app.run(debug=True)

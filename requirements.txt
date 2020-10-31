@@ -3,3 +3,6 @@ flask-sqlalchemy==2.4.4
 psycopg2==2.8.6
 Flask-migrate==2.5.3
 flask-wtf==0.14.3
+Flask-Login==0.4.1
+WTForms==2.2.1
+passlib==1.7.1
