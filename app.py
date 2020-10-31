@@ -3,6 +3,7 @@ from flask import Flask, request, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask import request
+from wtform_fields import *
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -71,10 +72,34 @@ def parse_list_filter(s):
             x = x.replace(i, '')
         returnList.append(x)
     return returnList
-
+'''
 @app.route('/')
 def hello_world():
     return render_template("main.html")
+'''
+@app.route("/", methods=['GET', 'POST'])
+def index():
+
+    reg_form = RegistrationForm()
+
+    # Update database if validation success
+    '''
+    if reg_form.validate_on_submit():
+        username = reg_form.username.data
+        password = reg_form.password.data
+
+        # Hash password
+        hashed_pswd = pbkdf2_sha256.hash(password)
+
+        # Add username & hashed password to DB
+        user = User(username=username, hashed_pswd=hashed_pswd)
+        db.session.add(user)
+        db.session.commit()
+
+        flash('Registered successfully. Please login.', 'success')
+        return redirect(url_for('login'))
+	'''
+    return render_template("index.html", form=reg_form)
 
 @app.route('/recipes/', methods=['GET'])
 def handle_recipe():
