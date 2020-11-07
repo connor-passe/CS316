@@ -76,7 +76,7 @@ def parse_list_filter(s):
 
 
 @app.route('/')
-def hello_world():
+def home():
     return render_template("main.html")
 
 @app.route('/signup/', methods=['GET', 'POST'])

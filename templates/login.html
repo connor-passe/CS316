@@ -4,8 +4,7 @@
 {% block title %}Login {% endblock %}
 
 {% block content %}
-    <h2>Login now!</h2>
-    <p>Enter you username/password to start RChat</p>
+    <h5>Enter your username and password:</h5>
 
     <form action="{{ url_for('login') }}", method="POST">
         {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}
@@ -18,5 +17,5 @@
 
     <hr>
 
-    <p>Have not registered? <a href={{url_for('index')}}>Register here</a>.</p>
+    <p>Not registered? <a href={{url_for('index')}}>Register here</a>.</p>
 {% endblock %}
