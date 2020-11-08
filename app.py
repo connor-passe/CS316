@@ -82,27 +82,6 @@ def home():
 @app.route('/signup/', methods=['GET', 'POST'])
 def index():
 	reg_form = RegistrationForm()
-
-    if reg_form.validate_on_submit():
-        username = reg_form.username.data
-        password = reg_form.password.data
-        name = reg_form.name.data
-        age = reg_form.age.data
-        cooking_skill = reg_form.cooking_skill.data
-        vegetarian = reg_form.vegetarian.data
-        security_answer = reg_form.security_answer.data
-
-    #check username exists
-    user_object = User.query.filter_vy(username=username).first()
-    if user_object:
-        return "Someone has taken this username already!"
-
-    #add user to db
-    user = User(username=username, password=password, name=name, age=age, cooking_skill=cooking_skill,vegetarian=vegetarian, security_answer=security_answer)
-    db.sesssion.add(user)
-    db.session.commit()
-    return "Inserted into DB!"
-
 	return render_template("index.html", form=reg_form)
 
 @app.route('/recipes/', methods=['GET'])

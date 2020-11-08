@@ -20,21 +20,13 @@
         <div class="age">
             {{ displayField(form.age, 'Age') }}
         </div>
-        <div class="dropdown">
+        <div class="cooking-skill">
             <p>What is your cooking skill level?</p>
-            <button class="drop-btn">Select</button>
-            <div class="dropdown-content">
-                <a href="#">No experience</a>
-                <a href="#">Beginner</a>
-                <a href="#">Intermediate</a>
-                <a href="#">Advanced</a>
-                <a href="#">Expert</a>
-            </div>
+            {{ form.cooking_skill }}
         </div>
         <div class="vegetarian">
             <p>Are you a vegetarian?</p>
-            <input type="radio" name="vegetarian" value="veg"> Yes
-            <input type="radio" name="vegetarian" value="no-veg"> No
+            {{ form.vegetarian }}
         </div>
         <div class="sec-question">
             <p>Security question: What is your mother's maiden name?</p>

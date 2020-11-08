@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, RadioField, SubmitField
 from wtforms.validators import InputRequired, Length, EqualTo, ValidationError
 
 from passlib.hash import pbkdf2_sha256
@@ -30,6 +30,8 @@ class RegistrationForm(FlaskForm):
     confirm_pswd = PasswordField('confirm_pswd', validators=[InputRequired(message="Password required"), EqualTo('password', message="Passwords must match")])
     name = StringField('name', validators=[InputRequired(message="Name required")])
     age = StringField('age')
+    cooking_skill = RadioField('cooking_skill', choices=[("none", "No experience"), ("beginner", "Beginner"), ("intermediate", "Intermediate"), ("advanced", "Advanced"), ("expert", "Expert")])
+    vegetarian = RadioField('vegetarian', choices=[("veg", "Yes"), ("no-veg", "No")])
     sec_question = PasswordField('sec_question', validators=[InputRequired(message="Answer to security questions required")])
 
     '''
