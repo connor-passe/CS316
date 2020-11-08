@@ -28,8 +28,7 @@ class RegistrationForm(FlaskForm):
     username = StringField('username', validators=[InputRequired(message="Username required"), Length(min=4, max=25, message="Username must be between 4 and 25 characters")])
     password = PasswordField('password', validators=[InputRequired(message="Password required"), Length(min=4, max=25, message="Password must be between 4 and 25 characters")])
     confirm_pswd = PasswordField('confirm_pswd', validators=[InputRequired(message="Password required"), EqualTo('password', message="Passwords must match")])
-    first_name = StringField('first_name', validators=[InputRequired(message="Name required")])
-    last_name = StringField('first_name', validators=[InputRequired(message="Name required")])
+    name = StringField('name', validators=[InputRequired(message="Name required")])
     age = StringField('age')
     sec_question = PasswordField('sec_question', validators=[InputRequired(message="Answer to security questions required")])
 
