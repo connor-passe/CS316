@@ -1,10 +1,10 @@
 {% from 'field-macro.html' import displayField %}
-{% extends "prelogin-layout.html" %}
+{% extends "rl-layout.html" %}
 
 {% block title %}Login {% endblock %}
 
 {% block content %}
-    <h5>Enter your username and password:</h5>
+    <h2>Enter your username and password:</h2>
 
     <form action="{{ url_for('login') }}", method="POST">
         {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}

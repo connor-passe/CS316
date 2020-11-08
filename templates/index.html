@@ -4,14 +4,45 @@
 {% block title %}Registration {% endblock title%}
 
 {% block content %}
-    <h5>First time here? Register below!</h5>
+    <h2>First time here? Register below!</h2>
 
     <form action="{{ url_for('index') }}", method="POST">
-        {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}
-        {{ displayField(form.password, 'Password') }}
-        {{ displayField(form.confirm_pswd, 'Retype Password') }}
-        <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-warning">
+        <div class="username">
+            {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}
+        </div>
+        <div class="password">
+            {{ displayField(form.password, 'Password') }}
+            {{ displayField(form.confirm_pswd, 'Retype Password') }}
+        </div>
+        <div class="name">
+            {{ displayField(form.first_name, 'First Name') }}
+            {{ displayField(form.last_name, 'Last Name') }}
+        </div>
+        <div class="age">
+            {{ displayField(form.age, 'Age') }}
+        </div>
+        <div class="dropdown">
+            <p>What is your cooking skill level?</p>
+            <button class="drop-btn">Select</button>
+            <div class="dropdown-content">
+                <a href="#">No experience</a>
+                <a href="#">Beginner</a>
+                <a href="#">Intermediate</a>
+                <a href="#">Advanced</a>
+                <a href="#">Expert</a>
+            </div>
+        </div>
+        <div class="vegetarian">
+            <p>Are you a vegetarian?</p>
+            <input type="radio" name="vegetarian" value="veg"> Yes
+            <input type="radio" name="vegetarian" value="no-veg"> No
+        </div>
+        <div class="sec-question">
+            <p>Security question: What is your mother's maiden name?</p>
+            {{ displayField(form.sec_question) }}
+        </div>
+        <div class="submit-btn">
+            <input type="submit" value="Create" class="btn">
         </div>
         {{ form.csrf_token }}
     </form>
