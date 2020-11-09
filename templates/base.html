@@ -22,14 +22,17 @@
   {% endblock %}
 
   {% block search %}
+  <div class="column-flex">
   <form action="/recipes/" method="GET">
     <div class="form-group">
       <input type="text" class="form-control form-item" id="ingredient" name="ingredient" placeholder="Ingredient">
     </div>
     <button type="submit" class="btn btn-primary form-item">Search</button>
   </form>
+  <div class="center">Use a comma to separate multiple ingredients for search.</div>
+  </div>
   {% endblock %}
-  
+
   {% block content %}
   {% endblock %}
 

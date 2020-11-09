@@ -42,3 +42,13 @@ form {
 .btn {
   padding: 0px 14px;
 }
+
+.column-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.center {
+  margin: auto;
+}
