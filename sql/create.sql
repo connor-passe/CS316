@@ -22,7 +22,7 @@ CSV HEADER;
 
 CREATE TABLE public.accounts
 (
-    id bigint NOT NULL,
+    id serial bigint NOT NULL,
     username character varying(25) UNIQUE NOT NULL,
     password character varying(15) COLLATE pg_catalog."default" NOT NULL,
     name text COLLATE pg_catalog."default" NOT NULL,
