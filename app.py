@@ -80,24 +80,21 @@ def handle_recipe():
         dairy = request.args.get('dairy', '')
 
         recipe = set()
+        #if vegetarian:
+            # need loop through list of common meats and query for recipes that don't contain these and intersect recipe set
+            # probably want to write a function to do the exclusion given a list
+        #if vegan:
+            # exclude eggs, dairy
+        #if nuts:
+            # exclude nuts
+        #if dairy:
+            # exclude dairy
         recipe.update(recipes.query.filter(recipes.ingredients.contains(ingredients[0])).all())
         for i in range(1, len(ingredients)):
             temp = set()
             temp.update(recipes.query.filter(recipes.ingredients.contains(ingredients[i])).all())
             recipe = recipe.intersection(temp)
-        #recipe = recipes.query.filter(recipes.ingredients.contains(ingredient)).all()
-        #all_recipes = []
-        #for x in recipe:
-        #    response = {
-        #        "id": x.id,
-        #        "name": x.name,
-        #        "minutes": x.minutes,
-        #        "n_steps": x.n_steps,
-        #        "description": x.description,
-        #        "ingredients": x.ingredients
-        #    }
-        #    all_recipes.append(response)
-        #return {"message": "success", "time": time, "skill": skill, "vegetarian": vegetarian, "recipe": all_recipes}
+
         return render_template("search-results.html", query=recipe, ingredient=ingredient)
 
 @app.route('/recipes/<id>', methods=['GET'])
