@@ -89,10 +89,10 @@ def handle_recipe():
             # exclude nuts
         #if dairy:
             # exclude dairy
-        recipe.update(recipes.query.filter(recipes.ingredients.contains(ingredients[0])).all())
+        recipe.update(recipes.query.filter(recipes.ingredients.contains(ingredients[0].strip())).all())
         for i in range(1, len(ingredients)):
             temp = set()
-            temp.update(recipes.query.filter(recipes.ingredients.contains(ingredients[i])).all())
+            temp.update(recipes.query.filter(recipes.ingredients.contains(ingredients[i].strip())).all())
             recipe = recipe.intersection(temp)
 
         return render_template("search-results.html", query=recipe, ingredient=ingredient)
