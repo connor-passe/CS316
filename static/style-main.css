@@ -1,5 +1,6 @@
 form {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin: 30px 10px;
 }
@@ -11,4 +12,19 @@ form {
 
 .btn {
   padding: 0px 14px;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.option-item {
+  margin: 5px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
 }

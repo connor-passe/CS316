@@ -71,6 +71,12 @@ def hello_world():
 def handle_recipe():
     if request.method == 'GET':
         ingredient = request.args.get('ingredient', '')
+        time = request.args.get('time', '')
+        skill = request.args.get('skill', '')
+        vegetarian = request.args.get('vegetarian', '')
+        vegan = request.args.get('vegan', '')
+        nuts = request.args.get('nuts', '')
+        dairy = request.args.get('dairy', '')
         recipe = recipes.query.filter(recipes.ingredients.contains(ingredient)).all()
         all_recipes = []
         for x in recipe:
@@ -83,7 +89,7 @@ def handle_recipe():
                 "ingredients": x.ingredients
             }
             all_recipes.append(response)
-        #return {"message": "success", "recipe": all_recipes}
+        #return {"message": "success", "time": time, "skill": skill, "vegetarian": vegetarian, "recipe": all_recipes}
         return render_template("search-results.html", query=recipe, ingredient=ingredient)
 
 @app.route('/recipes/<id>', methods=['GET'])

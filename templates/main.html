@@ -3,3 +3,47 @@
 {{super()}}
 <link rel="stylesheet" href="{{ url_for('static', filename='style-main.css') }}">
 {% endblock %}
+{% block search %}
+<form action="/recipes/" method="GET">
+  <div class="form-group">
+    <input type="text" class="form-control form-item" id="ingredient" name="ingredient" placeholder="Ingredient">
+    <button type="submit" class="btn btn-primary form-item">Search</button>
+  </div>
+  <div class="form-group">
+  <div class="option">
+  <label for="time" class="option-item">Time (min)</label>
+  <select id="time" name="time" class="option-item">
+    <option value="any">any</option>
+    <option value="0,15"><15</option>
+    <option value="15,30">15-30</option>
+    <option value="30,60">30-60</option>
+    <option value="60,">>60</option>
+  </select>
+  </div>
+
+  <div class="option">
+  <label for="skill" class="option-item">Difficulty Level</label>
+  <select id="skill" name="skill" class="option-item">
+    <option value="any">any</option>
+    <option value="0,5">easy</option>
+    <option value="5,10">moderate</option>
+    <option value="10,">hard</option>
+  </select>
+  </div>
+
+  <div class="option">
+    <label for="restrictions" class="option-item">Dietary Restrictions</label>
+    <div class="option-item">
+      <input type="checkbox" id="vegetarian" name="vegetarian" value="vegetarian">
+      <label for="vegetarian">vegetarian</label><br>
+      <input type="checkbox" id="vegan" name="vegan" value="vegan">
+      <label for="vegan">vegan</label><br>
+      <input type="checkbox" id="nuts" name="nuts" value="nuts">
+      <label for="nuts">no nuts</label><br>
+      <input type="checkbox" id="dairy" name="dairy" value="dairy">
+      <label for="dairy">no dairy</label>
+    </div>
+  </div>
+  </div>
+</form>
+{% endblock %}
