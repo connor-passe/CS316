@@ -22,16 +22,15 @@ CSV HEADER;
 
 CREATE TABLE public.accounts
 (
-    id serial bigint NOT NULL,
+    id bigserial NOT NULL,
     username character varying(25) UNIQUE NOT NULL,
     password character varying(15) COLLATE pg_catalog."default" NOT NULL,
     name text COLLATE pg_catalog."default" NOT NULL,
     age smallint,
-    cooking_skill text pg_catalog."default",
-    vegetarian boolean pg_catalog."default",
-    security answer text pg_catalog."default" NOT NULL
-
-    CONSTRAINT accounts_pkey SERIAL PRIMARY KEY (id)
+    cooking_skill text COLLATE pg_catalog."default",
+    vegetarian boolean,
+    security_answer text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "accounts_pkey" PRIMARY KEY (id)
 )
 
 TABLESPACE pg_default;
