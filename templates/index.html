@@ -1,0 +1,44 @@
+{% from 'field-macro.html' import displayField %}
+{% extends "rl-layout.html" %}
+
+{% block title %}Registration {% endblock title%}
+
+{% block content %}
+    <h2>First time here? Register below!</h2>
+
+    <form action="{{ url_for('index') }}", method="POST">
+        <div class="username">
+            {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}
+        </div>
+        <div class="password">
+            {{ displayField(form.password, 'Password') }}
+            {{ displayField(form.confirm_pswd, 'Retype Password') }}
+        </div>
+        <div class="name">
+            {{ displayField(form.name, 'Name') }}
+        </div>
+        <div class="age">
+            {{ displayField(form.age, 'Age') }}
+        </div>
+        <div class="cooking-skill">
+            <p>What is your cooking skill level?</p>
+            {{ form.cooking_skill }}
+        </div>
+        <div class="vegetarian">
+            <p>Are you a vegetarian?</p>
+            {{ form.vegetarian }}
+        </div>
+        <div class="sec-question">
+            <p>Security question: What is your mother's maiden name?</p>
+            {{ displayField(form.sec_question) }}
+        </div>
+        <div class="submit-btn">
+            <input type="submit" value="Create" class="btn">
+        </div>
+        {{ form.csrf_token }}
+    </form>
+
+    <hr>
+
+    <p>Already registered? <a href={{url_for('login')}}>Login here</a>.</p>
+{% endblock %}
