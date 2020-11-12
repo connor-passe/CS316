@@ -155,6 +155,14 @@ def handle_recipe():
             temp.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[i].strip())).all())
             recipe = recipe.intersection(temp)
 
+        if time != 'any':
+            time_limits = time.split(',')
+            start = int(time_limits[0])
+            if len(time_limits[1])>0:
+                end = int(time_limits[1])
+                recipe = [x for x in recipe if x.minutes<=end]
+            recipe = [x for x in recipe if x.minutes>=start]
+
         if vegetarian:
             recipe = [x for x in recipe if x.id in no_meat]
         if vegan:
