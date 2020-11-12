@@ -50,8 +50,6 @@ class Account(db.Model):
     vegetarian = db.Column(db.Boolean())
     security_answer = db.Column(db.String(), nullable=False)
 
-
-
     def __init__(self, username, password, name, age, cooking_skill, vegetarian, security_answer):
         #self.id = id
         self.username = username
@@ -62,17 +60,38 @@ class Account(db.Model):
         self.vegetarian = vegetarian
         self.security_answer = security_answer
 
+meats = ['chicken', 'pork', 'beef', 'turkey', 'duck', 'lamb', 'salmon', 'fish']
+dairy = ['milk', 'cream', 'yogurt', 'cheese']
+nuts = ['peanut', 'almond', 'cashew', 'pecan', 'walnut', 'hazelnut', 'nut', 'pistachio']
+
+def exclude(remove):
+    list = set()
+    list.update(Recipe.query.all())
+    for x in remove:
+        temp = set()
+        temp.update(Recipe.query.filter(~Recipe.ingredients.contains(x)).all())
+        list = list.intersection(temp)
+    ids = []
+    for x in list:
+        ids.append(x.id)
+    return ids
+
+no_meat = exclude(meats)
+no_eggs = exclude(['egg'])
+no_dairy = exclude(dairy)
+no_nuts = exclude(nuts)
+
 @app.template_filter('parseList')
 def parse_list_filter(s):
-	s = s.replace('"', "'")
-	splitString = s.split("', '")
-	toRemove = ["[", "]", "'"]
-	returnList = []
-	for x in splitString:
-		for i in toRemove:
-			x = x.replace(i, '')
-		returnList.append(x)
-	return returnList
+    s = s.replace('"', "'")
+    splitString = s.split("', '")
+    toRemove = ["[", "]", "'"]
+    returnList = []
+    for x in splitString:
+        for i in toRemove:
+            x = x.replace(i, '')
+        returnList.append(x)
+    return returnList
 '''
 @app.route('/set/')
 def set():
@@ -81,7 +100,7 @@ def set():
 
 @app.route('/get/')
 def get():
-	return session.get('key', 'not set')
+    return session.get('key', 'not set')
 '''
 
 @app.route('/')
@@ -130,21 +149,20 @@ def handle_recipe():
         dairy = request.args.get('dairy', '')
 
         recipe = set()
-        #if vegetarian:
-            # need loop through list of common meats and query for recipes that don't contain these and intersect recipe set
-            # probably want to write a function to do the exclusion given a list
-        #if vegan:
-            # exclude eggs, dairy
-        #if nuts:
-            # exclude nuts
-        #if dairy:
-            # exclude dairy
         recipe.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[0].strip())).all())
         for i in range(1, len(ingredients)):
             temp = set()
             temp.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[i].strip())).all())
             recipe = recipe.intersection(temp)
 
+        if vegetarian:
+            recipe = [x for x in recipe if x.id in no_meat]
+        if vegan:
+            recipe = [x for x in recipe if x.id in no_meat and x.id in no_eggs and x.id in no_dairy]
+        if nuts:
+            recipe = [x for x in recipe if x.id in no_nuts]
+        if dairy:
+            recipe = [x for x in recipe if x.id in no_dairy]
         return render_template("search-results.html", query=recipe, ingredient=ingredient)
 
 @app.route('/recipes/<id>', methods=['GET'])
