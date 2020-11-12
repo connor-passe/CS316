@@ -161,7 +161,15 @@ def handle_recipe():
             if len(time_limits[1])>0:
                 end = int(time_limits[1])
                 recipe = [x for x in recipe if x.minutes<=end]
-            recipe = [x for x in recipe if x.minutes>=start]
+            recipe = [x for x in recipe if x.minutes>start]
+
+        if skill != 'any':
+            step_limits = skill.split(',')
+            lower = int(step_limits[0])
+            if len(step_limits[1])>0:
+                upper = int(step_limits[1])
+                recipe = [x for x in recipe if x.n_steps<=upper]
+            recipe = [x for x in recipe if x.n_steps>lower]
 
         if vegetarian:
             recipe = [x for x in recipe if x.id in no_meat]
