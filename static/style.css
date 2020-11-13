@@ -43,6 +43,22 @@ form {
   padding: 0px 14px;
 }
 
+.option {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.option-item {
+  margin: 5px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+}
+
 .column-flex {
   display: flex;
   flex-direction: column;
