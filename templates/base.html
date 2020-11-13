@@ -55,13 +55,21 @@
     <div class="option">
       <label for="restrictions" class="option-item">Dietary Restrictions</label>
       <div class="option-item">
-        <input type="checkbox" id="vegetarian" name="vegetarian" value="vegetarian">
+        {% if vegetarian %}<input type="checkbox" id="vegetarian" name="vegetarian" value="true" checked>
+        {% else %}<input type="checkbox" id="vegetarian" name="vegetarian" value="true">
+        {% endif %}
         <label for="vegetarian">vegetarian</label><br>
-        <input type="checkbox" id="vegan" name="vegan" value="vegan">
+        {% if vegan %}<input type="checkbox" id="vegan" name="vegan" value="true" checked>
+        {% else %}<input type="checkbox" id="vegan" name="vegan" value="true">
+        {% endif %}
         <label for="vegan">vegan</label><br>
-        <input type="checkbox" id="nuts" name="nuts" value="nuts">
+        {% if nuts %}<input type="checkbox" id="nuts" name="nuts" value="true" checked>
+        {% else %}<input type="checkbox" id="nuts" name="nuts" value="true">
+        {% endif %}
         <label for="nuts">no nuts</label><br>
-        <input type="checkbox" id="dairy" name="dairy" value="dairy">
+        {% if dairy %}<input type="checkbox" id="dairy" name="dairy" value="true" checked>
+        {% else %}<input type="checkbox" id="dairy" name="dairy" value="true">
+        {% endif %}
         <label for="dairy">no dairy</label>
       </div>
     </div>

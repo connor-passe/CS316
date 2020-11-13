@@ -179,12 +179,11 @@ def handle_recipe():
             recipe = [x for x in recipe if x.id in no_nuts]
         if dairy:
             recipe = [x for x in recipe if x.id in no_dairy]
-        return render_template("search-results.html", query=recipe, ingredient=ingredient)
+        return render_template("search-results.html", query=recipe, ingredient=ingredient, time=time, skill=skill, vegetarian=vegetarian, vegan=vegan, nuts=nuts, dairy=dairy)
 
 @app.route('/recipes/<id>', methods=['GET'])
 def one_recipe(id):
     return render_template("one-recipe.html", query=Recipe.query.get(id))
-    #goal to show all the info for one recipe
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
