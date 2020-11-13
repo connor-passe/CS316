@@ -61,7 +61,7 @@ class Account(db.Model):
         self.security_answer = security_answer
 
 meats = ['chicken', 'pork', 'beef', 'turkey', 'duck', 'lamb', 'salmon', 'fish']
-dairy = ['milk', 'cream', 'yogurt', 'cheese']
+dairy = ['milk', 'cream', 'yogurt', 'cheese', 'butter']
 nuts = ['peanut', 'almond', 'cashew', 'pecan', 'walnut', 'hazelnut', 'nut', 'pistachio']
 
 def exclude(remove):
