@@ -149,10 +149,10 @@ def handle_recipe():
         dairy = request.args.get('dairy', '')
 
         recipe = set()
-        recipe.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[0].strip())).all())
+        recipe.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[0].strip().lower())).all())
         for i in range(1, len(ingredients)):
             temp = set()
-            temp.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[i].strip())).all())
+            temp.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[i].strip().lower())).all())
             recipe = recipe.intersection(temp)
 
         if time != 'any':
