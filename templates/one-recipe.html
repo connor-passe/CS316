@@ -3,9 +3,13 @@
 {{super()}}
   <link rel="stylesheet" href="{{ url_for('static', filename='style-recipe.css') }}">
 {% endblock %}
+  {% block search %}
+  {% endblock %}
+
   {% block content %}
   {% if query %}
   <div class="all-content">
+  <div class="txt"><a class="description" href="javascript: history.go(-1)">< Back to Search Results</a></div>
   <h1> {{query.name.title()}} </h1>
       <div class="info">
         <div class="info-item txt">
