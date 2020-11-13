@@ -1,5 +1,5 @@
 h1 {
-  margin: 10px;
+  margin: 10px 30px;
 }
 
 .info {
@@ -7,9 +7,16 @@ h1 {
 }
 
 .txt {
-  padding: 10px;
+  padding: 10px 30px;
 }
 
 .description {
   color: #808080;
+}
+
+@media (min-width: 768px) {
+  .all-content {
+    width: 80%;
+    margin: auto;
+  }
 }

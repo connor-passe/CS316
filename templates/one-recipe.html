@@ -5,6 +5,7 @@
 {% endblock %}
   {% block content %}
   {% if query %}
+  <div class="all-content">
   <h1> {{query.name.title()}} </h1>
       <div class="info">
         <div class="info-item txt">
@@ -39,6 +40,7 @@
         </div>
         {% endfor %}
       </div>
+  </div>
   {% else %}
   <p>No results found. Please check your spelling or try a different ingredient.</p>
   {% endif %}
