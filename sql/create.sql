@@ -16,7 +16,12 @@ ALTER TABLE public.recipes
     OWNER to "user";
 
 COPY public.recipes(name, id, minutes, n_steps, steps, description, ingredients)
-FROM '/var/lib/postgresql/sql/data.csv'
+FROM '/var/lib/postgresql/sql/data1.csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY public.recipes(name, id, minutes, n_steps, steps, description, ingredients)
+FROM '/var/lib/postgresql/sql/data2.csv'
 DELIMITER ','
 CSV HEADER;
 
