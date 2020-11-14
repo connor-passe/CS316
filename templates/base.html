@@ -13,7 +13,7 @@
     {% if 'account_id' in session %}
       <div class="navbar-user">
       <a class="navbar-right nav-item" href="/logout">Log out</a>
-      <a class="navbar-right nav-item" href="/favorites">Welcome, {{ session.get('username')}}</a>
+      <a class="navbar-right nav-item" href="/">Welcome, {{ session.get('username')}}</a>
       </div>
     {% else %}
 

@@ -172,10 +172,10 @@ def handle_recipe():
 		dairy = request.args.get('dairy', '')
 
 		recipe = set()
-		recipe.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[0].strip())).all())
+		recipe.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[0].strip().lower())).all())
 		for i in range(1, len(ingredients)):
 			temp = set()
-			temp.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[i].strip())).all())
+			temp.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[i].strip().lower())).all())
 			recipe = recipe.intersection(temp)
 
 		if time != 'any':
@@ -202,57 +202,57 @@ def handle_recipe():
 			recipe = [x for x in recipe if x.id in no_nuts]
 		if dairy:
 			recipe = [x for x in recipe if x.id in no_dairy]
-		return render_template("search-results.html", query=recipe, ingredient=ingredient)
-
+		return render_template("search-results.html", query=recipe, ingredient=ingredient, time=time, skill=skill, vegetarian=vegetarian, vegan=vegan, nuts=nuts, dairy=dairy)
+'''
 @app.route('/recipes/<id>', methods=['GET'])
 def one_recipe(id):
 	return render_template("one-recipe.html", query=Recipe.query.get(id))
-    if request.method == 'GET':
-        ingredient = request.args.get('ingredient', '')
-        ingredients = ingredient.split(',')
-        time = request.args.get('time', '')
-        skill = request.args.get('skill', '')
-        vegetarian = request.args.get('vegetarian', '')
-        vegan = request.args.get('vegan', '')
-        nuts = request.args.get('nuts', '')
-        dairy = request.args.get('dairy', '')
+	if request.method == 'GET':
+		ingredient = request.args.get('ingredient', '')
+		ingredients = ingredient.split(',')
+		time = request.args.get('time', '')
+		skill = request.args.get('skill', '')
+		vegetarian = request.args.get('vegetarian', '')
+		vegan = request.args.get('vegan', '')
+		nuts = request.args.get('nuts', '')
+		dairy = request.args.get('dairy', '')
 
-        recipe = set()
-        recipe.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[0].strip().lower())).all())
-        for i in range(1, len(ingredients)):
-            temp = set()
-            temp.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[i].strip().lower())).all())
-            recipe = recipe.intersection(temp)
+		recipe = set()
+		recipe.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[0].strip().lower())).all())
+		for i in range(1, len(ingredients)):
+			temp = set()
+			temp.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[i].strip().lower())).all())
+			recipe = recipe.intersection(temp)
 
-        if time != 'any':
-            time_limits = time.split(',')
-            start = int(time_limits[0])
-            if len(time_limits[1])>0:
-                end = int(time_limits[1])
-                recipe = [x for x in recipe if x.minutes<=end]
-            recipe = [x for x in recipe if x.minutes>start]
+		if time != 'any':
+			time_limits = time.split(',')
+			start = int(time_limits[0])
+			if len(time_limits[1])>0:
+				end = int(time_limits[1])
+				recipe = [x for x in recipe if x.minutes<=end]
+			recipe = [x for x in recipe if x.minutes>start]
 
-        if skill != 'any':
-            step_limits = skill.split(',')
-            lower = int(step_limits[0])
-            if len(step_limits[1])>0:
-                upper = int(step_limits[1])
-                recipe = [x for x in recipe if x.n_steps<=upper]
-            recipe = [x for x in recipe if x.n_steps>lower]
+		if skill != 'any':
+			step_limits = skill.split(',')
+			lower = int(step_limits[0])
+			if len(step_limits[1])>0:
+				upper = int(step_limits[1])
+				recipe = [x for x in recipe if x.n_steps<=upper]
+			recipe = [x for x in recipe if x.n_steps>lower]
 
-        if vegetarian:
-            recipe = [x for x in recipe if x.id in no_meat]
-        if vegan:
-            recipe = [x for x in recipe if x.id in no_meat and x.id in no_eggs and x.id in no_dairy]
-        if nuts:
-            recipe = [x for x in recipe if x.id in no_nuts]
-        if dairy:
-            recipe = [x for x in recipe if x.id in no_dairy]
-        return render_template("search-results.html", query=recipe, ingredient=ingredient, time=time, skill=skill, vegetarian=vegetarian, vegan=vegan, nuts=nuts, dairy=dairy)
-
+		if vegetarian:
+			recipe = [x for x in recipe if x.id in no_meat]
+		if vegan:
+			recipe = [x for x in recipe if x.id in no_meat and x.id in no_eggs and x.id in no_dairy]
+		if nuts:
+			recipe = [x for x in recipe if x.id in no_nuts]
+		if dairy:
+			recipe = [x for x in recipe if x.id in no_dairy]
+		return render_template("search-results.html", query=recipe, ingredient=ingredient, time=time, skill=skill, vegetarian=vegetarian, vegan=vegan, nuts=nuts, dairy=dairy)
+'''
 @app.route('/recipes/<id>', methods=['GET'])
 def one_recipe(id):
-    return render_template("one-recipe.html", query=Recipe.query.get(id))
+	return render_template("one-recipe.html", query=Recipe.query.get(id))
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
