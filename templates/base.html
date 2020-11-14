@@ -10,11 +10,14 @@
   <nav class="navbar">
     <a class="navbar-brand nav-item" href="/">Home</a>
 
-    {% if username %}
-      <a class="navbar-right nav-item" href="/favorites">Welcome, {{username}}</a>
-    {% else %}
-    <div class="navbar-user">
+    {% if 'account_id' in session %}
+      <div class="navbar-user">
       <a class="navbar-right nav-item" href="/logout">Log out</a>
+      <a class="navbar-right nav-item" href="/favorites">Welcome, {{ session.get('username')}}</a>
+      </div>
+    {% else %}
+
+    <div class="navbar-user"> 
       <a class="navbar-right nav-item" href="/login">Log in</a>
       <a class="navbar-right nav-item" href="/signup">Sign Up</a>
     </div>

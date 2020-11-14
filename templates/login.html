@@ -6,7 +6,7 @@
 {% block content %}
     <h2>Login now!</h2>
     <p>{{ message }}<p>
-    <p>Enter you username/password to start RChat</p>
+    <p>Enter you username/password to begin cooking!</p>
 
     <form action="{{ url_for('login') }}", method="POST">
         {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}

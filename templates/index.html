@@ -5,6 +5,7 @@
 
 {% block content %}
     <h2>First time here? Register below!</h2>
+    <p>{{ message }}<p>
 
     <form action="{{ url_for('index') }}", method="POST">
         <div class="username">
