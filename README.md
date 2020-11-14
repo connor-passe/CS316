@@ -11,15 +11,10 @@
 Go to http://vcm-17482.vm.duke.edu:5000/. You should see the homepage, with a search bar in the center and log in and sign up options in the top right.
 
 #### Functionalities:
-Completed
-* Search by ingredient(s)
+* Search by one or multiple ingredients
 * View one recipe
-
-In progress
 * Log in to/sign up for user account
 * Apply additional search filters - total time, number of steps, vegetarian
-* Save search filter preferences
-* Save user favorites
 
 ### Tech Stack
 * Flask
@@ -31,3 +26,6 @@ In progress
 
 ### Code Structure
 The main app code is contained within app.py, with routes to the various webpages involved. HTML templates can be found within the templates folder, and CSS is in the static folder to allow access when rendering templates from the Flask app. The sql folder contains the setup SQL script and the CSV file to populate the database.
+
+### Resources
+Main page background image: https://pixabay.com/images/id-1898194/

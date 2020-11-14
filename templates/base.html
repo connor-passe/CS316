@@ -37,34 +37,60 @@
     <div class="option">
     <label for="time" class="option-item">Time (min)</label>
     <select id="time" name="time" class="option-item">
-      <option value="any">any</option>
-      <option value="0,15"><15</option>
-      <option value="15,30">15-30</option>
-      <option value="30,60">30-60</option>
-      <option value="60,">>60</option>
+      {% if time=="any" %}<option value="any" selected>any</option>
+      {% else %}<option value="any">any</option>
+      {% endif %}
+      {% if time=="0,15" %}<option value="0,15" selected><15</option>
+      {% else %}<option value="0,15"><15</option>
+      {% endif %}
+      {% if time=="15,30" %}<option value="15,30" selected>15-30</option>
+      {% else %}<option value="15,30">15-30</option>
+      {% endif %}
+      {% if time=="30,60" %}<option value="30,60" selected>30-60</option>
+      {% else %}<option value="30,60">30-60</option>
+      {% endif %}
+      {% if time=="60," %}<option value="60," selected>>60</option>
+      {% else %}<option value="60,">>60</option>
+      {% endif %}
     </select>
     </div>
 
     <div class="option">
     <label for="skill" class="option-item">Difficulty Level</label>
     <select id="skill" name="skill" class="option-item">
-      <option value="any">any</option>
-      <option value="0,5">easy</option>
-      <option value="5,10">moderate</option>
-      <option value="10,">hard</option>
+      {% if skill=="any" %}<option value="any" selected>any</option>
+      {% else %}<option value="any">any</option>
+      {% endif %}
+      {% if skill=="0,5" %}<option value="0,5" selected>easy</option>
+      {% else %}<option value="0,5">easy</option>
+      {% endif %}
+      {% if skill=="5,10" %}<option value="5,10" selected>moderate</option>
+      {% else %}<option value="5,10">moderate</option>
+      {% endif %}
+      {% if skill=="10," %}<option value="10," selected>hard</option>
+      {% else %}<option value="10,">hard</option>
+      {% endif %}
     </select>
     </div>
 
     <div class="option">
       <label for="restrictions" class="option-item">Dietary Restrictions</label>
       <div class="option-item">
-        <input type="checkbox" id="vegetarian" name="vegetarian" value="vegetarian">
+        {% if vegetarian %}<input type="checkbox" id="vegetarian" name="vegetarian" value="true" checked>
+        {% else %}<input type="checkbox" id="vegetarian" name="vegetarian" value="true">
+        {% endif %}
         <label for="vegetarian">vegetarian</label><br>
-        <input type="checkbox" id="vegan" name="vegan" value="vegan">
+        {% if vegan %}<input type="checkbox" id="vegan" name="vegan" value="true" checked>
+        {% else %}<input type="checkbox" id="vegan" name="vegan" value="true">
+        {% endif %}
         <label for="vegan">vegan</label><br>
-        <input type="checkbox" id="nuts" name="nuts" value="nuts">
+        {% if nuts %}<input type="checkbox" id="nuts" name="nuts" value="true" checked>
+        {% else %}<input type="checkbox" id="nuts" name="nuts" value="true">
+        {% endif %}
         <label for="nuts">no nuts</label><br>
-        <input type="checkbox" id="dairy" name="dairy" value="dairy">
+        {% if dairy %}<input type="checkbox" id="dairy" name="dairy" value="true" checked>
+        {% else %}<input type="checkbox" id="dairy" name="dairy" value="true">
+        {% endif %}
         <label for="dairy">no dairy</label>
       </div>
     </div>
