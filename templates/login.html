@@ -3,17 +3,30 @@
 
 {% block title %}Login {% endblock %}
 
+{% block nav %}
+    <nav class="navbar">
+        <a class="navbar-brand nav-item" href="/">Home</a>
+        
+        {% if username %}
+        <a class="navbar-right nav-item" href="/favorites">Welcome, {{username}}</a>
+        {% else %}
+        <div class="navbar-user">
+            <a class="navbar-right nav-item" href="/signup">Sign Up</a>
+        </div>
+        {% endif %}
+    </nav>
+{% endblock %}
+
 {% block content %}
-    <h2>Login now!</h2>
+    <h4>Enter your username and password:</h4>
     <p>{{ message }}<p>
-    <p>Enter you username/password to begin cooking!</p>
 
     <form action="{{ url_for('login') }}", method="POST">
         {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}
         {{ displayField(form.password, 'Password') }}
 
-        <div class="form-group">
-            <input type="submit" value="Login" class="btn btn-warning">
+        <div class="submit-btn">
+            <input type="submit" value="Login" class="btn">
         </div>
         {{ form.csrf_token }}
     </form>

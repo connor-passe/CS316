@@ -1,7 +1,21 @@
 {% from 'field-macro.html' import displayField %}
-{% extends "rl-layout.html" %}
+{% extends "prelogin-layout.html" %}
 
-{% block title %}Registration {% endblock title%}
+{% block title %}Registration {% endblock %}
+
+{% block nav %}
+    <nav class="navbar">
+        <a class="navbar-brand nav-item" href="/">Home</a>
+        
+        {% if username %}
+        <a class="navbar-right nav-item" href="/favorites">Welcome, {{username}}</a>
+        {% else %}
+        <div class="navbar-user">
+            <a class="navbar-right nav-item" href="/login">Log in</a>
+        </div>
+        {% endif %}
+    </nav>
+{% endblock %}
 
 {% block content %}
     <h2>First time here? Register below!</h2>
