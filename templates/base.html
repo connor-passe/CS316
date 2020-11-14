@@ -12,12 +12,12 @@
 
     {% if 'account_id' in session %}
       <div class="navbar-user">
-      <a class="navbar-right nav-item" href="/logout">Log out</a>
       <a class="navbar-right nav-item" href="/">Welcome, {{ session.get('username')}}</a>
+      <a class="navbar-right nav-item" href="/logout">Log out</a>
       </div>
     {% else %}
 
-    <div class="navbar-user"> 
+    <div class="navbar-user">
       <a class="navbar-right nav-item" href="/login">Log in</a>
       <a class="navbar-right nav-item" href="/signup">Sign Up</a>
     </div>
@@ -76,7 +76,7 @@
     <div class="option">
       <label for="restrictions" class="option-item">Dietary Restrictions</label>
       <div class="option-item">
-        {% if vegetarian %}<input type="checkbox" id="vegetarian" name="vegetarian" value="true" checked>
+        {% if vegetarian or ('vegetarian' in session and session.get('vegetarian')) %}<input type="checkbox" id="vegetarian" name="vegetarian" value="true" checked>
         {% else %}<input type="checkbox" id="vegetarian" name="vegetarian" value="true">
         {% endif %}
         <label for="vegetarian">vegetarian</label><br>

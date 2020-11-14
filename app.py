@@ -109,7 +109,7 @@ def home():
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def index():
-	reg_form = RegistrationForm()    
+	reg_form = RegistrationForm()
 	login_form = LoginForm()
 
 	if request.method=='GET':
@@ -130,7 +130,7 @@ def index():
 		user_object = Account.query.filter_by(username=username).first()
 		if user_object:
 			return render_template("index.html", form=reg_form, message = "This username has already been taken!")
-		
+
 		#check that password is between 4 and 25 characters
 		if len(password) < 4 or len(password) > 25:
 			return render_template("index.html", form=reg_form, message = "Password must be between 4 and 25 characters!")
@@ -157,7 +157,6 @@ def index():
 		db.session.add(account)
 		db.session.commit()
 		return render_template("login.html", form=login_form, message = "Account created!")
-
 
 @app.route('/recipes/', methods=['GET'])
 def handle_recipe():
@@ -203,53 +202,7 @@ def handle_recipe():
 		if dairy:
 			recipe = [x for x in recipe if x.id in no_dairy]
 		return render_template("search-results.html", query=recipe, ingredient=ingredient, time=time, skill=skill, vegetarian=vegetarian, vegan=vegan, nuts=nuts, dairy=dairy)
-'''
-@app.route('/recipes/<id>', methods=['GET'])
-def one_recipe(id):
-	return render_template("one-recipe.html", query=Recipe.query.get(id))
-	if request.method == 'GET':
-		ingredient = request.args.get('ingredient', '')
-		ingredients = ingredient.split(',')
-		time = request.args.get('time', '')
-		skill = request.args.get('skill', '')
-		vegetarian = request.args.get('vegetarian', '')
-		vegan = request.args.get('vegan', '')
-		nuts = request.args.get('nuts', '')
-		dairy = request.args.get('dairy', '')
 
-		recipe = set()
-		recipe.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[0].strip().lower())).all())
-		for i in range(1, len(ingredients)):
-			temp = set()
-			temp.update(Recipe.query.filter(Recipe.ingredients.contains(ingredients[i].strip().lower())).all())
-			recipe = recipe.intersection(temp)
-
-		if time != 'any':
-			time_limits = time.split(',')
-			start = int(time_limits[0])
-			if len(time_limits[1])>0:
-				end = int(time_limits[1])
-				recipe = [x for x in recipe if x.minutes<=end]
-			recipe = [x for x in recipe if x.minutes>start]
-
-		if skill != 'any':
-			step_limits = skill.split(',')
-			lower = int(step_limits[0])
-			if len(step_limits[1])>0:
-				upper = int(step_limits[1])
-				recipe = [x for x in recipe if x.n_steps<=upper]
-			recipe = [x for x in recipe if x.n_steps>lower]
-
-		if vegetarian:
-			recipe = [x for x in recipe if x.id in no_meat]
-		if vegan:
-			recipe = [x for x in recipe if x.id in no_meat and x.id in no_eggs and x.id in no_dairy]
-		if nuts:
-			recipe = [x for x in recipe if x.id in no_nuts]
-		if dairy:
-			recipe = [x for x in recipe if x.id in no_dairy]
-		return render_template("search-results.html", query=recipe, ingredient=ingredient, time=time, skill=skill, vegetarian=vegetarian, vegan=vegan, nuts=nuts, dairy=dairy)
-'''
 @app.route('/recipes/<id>', methods=['GET'])
 def one_recipe(id):
 	return render_template("one-recipe.html", query=Recipe.query.get(id))
@@ -272,6 +225,7 @@ def login():
 			if account.password==password:
 				session['account_id']=account.id
 				session['username'] = username
+				session['vegetarian']=account.vegetarian
 				sessionvar=True
 				return render_template("main.html", message="Logged in!")
 			else:
@@ -286,8 +240,6 @@ def logout():
 	session.pop('account_id')
 	sessionvar=False
 	return render_template("login.html", form=login_form, message = "You have been logged out")
-
-
 
 if __name__ == '__main__':
 	app.run(debug=True)
