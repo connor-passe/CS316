@@ -124,6 +124,10 @@ def index():
 		age = reg_form.age.data
 		cooking_skill = reg_form.cooking_skill.data
 		vegetarian = reg_form.vegetarian.data
+		if vegetarian == 'veg':
+			vegetarian = True
+		else:
+			vegetarian = False
 		security_answer = reg_form.sec_question.data
 
 		#check username exists
@@ -153,7 +157,7 @@ def index():
 				return render_template("index.html", form=reg_form, message = "Please enter a valid integer age")
 
 		#add user to db
-		account = Account(username=username, password=password, name=name, age=int(age), cooking_skill=cooking_skill, vegetarian=False, security_answer=security_answer)
+		account = Account(username=username, password=password, name=name, age=int(age), cooking_skill=cooking_skill, vegetarian=vegetarian, security_answer=security_answer)
 		db.session.add(account)
 		db.session.commit()
 		return render_template("login.html", form=login_form, message = "Account created!")
