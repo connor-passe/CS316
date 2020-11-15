@@ -10,17 +10,17 @@
 <div class="results-content">
 {% if ingredient %}
   <h1>Results for "{{ingredient}}"</h1>
-  <p>Found {{total}} recipes</p>
 {% else %}
   <h1>All Recipes</h1>
 {% endif %}
+  <p>Found {{total}} recipes</p>
 
 {% if query %}
   {%for recipes in query%}
   <a href={{recipes.id}} class="container">
     <div class="recipe">
       <div class="recipe-item">
-          {{recipes.name.title()}}
+          {{recipes.name}}
       </div>
       <div class="recipe-item">
         {% if recipes.minutes/60 >= 1 %}
