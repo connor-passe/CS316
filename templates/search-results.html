@@ -20,8 +20,12 @@
   <a href={{recipes.id}} class="container">
     <div class="recipe">
       <div class="recipe-item">
-          {{recipes.name}}
-      </div>
+          {% if recipes.name %}
+            {{recipes.name.title()}}
+          {% else %}
+            {{recipes.name}} 
+          {% endif %}
+     </div>
       <div class="recipe-item">
         {% if recipes.minutes/60 >= 1 %}
           {{"%.0f"|format(recipes.minutes/60)}}
