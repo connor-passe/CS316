@@ -124,6 +124,10 @@ def index():
 		age = reg_form.age.data
 		cooking_skill = reg_form.cooking_skill.data
 		vegetarian = reg_form.vegetarian.data
+		if vegetarian == 'veg':
+			vegetarian = True
+		else:
+			vegetarian = False
 		security_answer = reg_form.sec_question.data
 
 		#check username exists
@@ -153,7 +157,7 @@ def index():
 				return render_template("index.html", form=reg_form, message = "Please enter a valid integer age")
 
 		#add user to db
-		account = Account(username=username, password=password, name=name, age=int(age), cooking_skill=cooking_skill, vegetarian=False, security_answer=security_answer)
+		account = Account(username=username, password=password, name=name, age=int(age), cooking_skill=cooking_skill, vegetarian=vegetarian, security_answer=security_answer)
 		db.session.add(account)
 		db.session.commit()
 		return render_template("login.html", form=login_form, message = "Account created!")
@@ -201,7 +205,7 @@ def handle_recipe():
 			recipe = [x for x in recipe if x.id in no_nuts]
 		if dairy:
 			recipe = [x for x in recipe if x.id in no_dairy]
-		return render_template("search-results.html", query=recipe, ingredient=ingredient, time=time, skill=skill, vegetarian=vegetarian, vegan=vegan, nuts=nuts, dairy=dairy)
+		return render_template("search-results.html", query=recipe, ingredient=ingredient, total=len(recipe), time=time, skill=skill, vegetarian=vegetarian, vegan=vegan, nuts=nuts, dairy=dairy)
 
 @app.route('/recipes/<id>', methods=['GET'])
 def one_recipe(id):
@@ -238,6 +242,8 @@ def login():
 def logout():
 	login_form = LoginForm()
 	session.pop('account_id')
+	session.pop('username')
+	session.pop('vegetarian')
 	sessionvar=False
 	return render_template("login.html", form=login_form, message = "You have been logged out")
 
