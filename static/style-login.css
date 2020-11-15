@@ -13,6 +13,10 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 10px;
 }
 
+p {
+	margin-left: 10px;
+}
+
 .display-4 {
 	text-align: center;
 }
