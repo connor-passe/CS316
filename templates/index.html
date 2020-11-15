@@ -4,9 +4,9 @@
 {% block title %}Registration {% endblock %}
 
 {% block nav %}
-    <nav class="navbar">
-        <a class="navbar-brand nav-item" href="/">Home</a>
-        
+    <nav>
+        <a class="nav-item" href="/">Home</a>
+
         {% if username %}
         <a class="navbar-right nav-item" href="/favorites">Welcome, {{username}}</a>
         {% else %}
@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block content %}
-    <h2>First time here? Register below!</h2>
+    <h4>First time here? Register below!</h4>
     <p>{{ message }}<p>
 
     <form action="{{ url_for('index') }}", method="POST">

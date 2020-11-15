@@ -238,6 +238,8 @@ def login():
 def logout():
 	login_form = LoginForm()
 	session.pop('account_id')
+	session.pop('username')
+	session.pop('vegetarian')
 	sessionvar=False
 	return render_template("login.html", form=login_form, message = "You have been logged out")
 

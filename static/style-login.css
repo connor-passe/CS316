@@ -4,4 +4,30 @@ form {
 
 .jumbotron {
   background-color: #FFD4C4;
+	border-radius: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: tahoma, geneva, sans-serif;
+	color: #443F57;
+	margin: 10px;
+}
+
+.display-4 {
+	text-align: center;
+}
+
+.main-section {
+	margin: 20px;
+}
+
+ul {
+	list-style-type: none;
+}
+
+@media (min-width: 768px) {
+  .main-section {
+    width: 500px;
+    margin: auto;
+  }
 }
